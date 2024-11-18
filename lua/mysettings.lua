@@ -26,7 +26,7 @@ vim.keymap.set("n", "<Leader>l", telescope.loclist)
 
 -- location list
 vim.opt.grepprg = "rg --vimgrep" -- by default this uses -uu flag which ignores gitignore
-vim.keymap.set("n", "<Leader>s", "\"jyiw:lgrep! <C-r><C-w><cr>", {silent = true})
+vim.keymap.set("n", "<Leader>s", "\"jyiw:lgrep! <C-r><C-w><cr><cmd>lope<cr>", {silent = true})
 vim.keymap.set("n", ")", "<cmd>lnext<cr>", {noremap = true})
 vim.keymap.set("n", "(", "<cmd>lprev<cr>", {noremap = true})
 
