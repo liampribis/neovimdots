@@ -14,12 +14,16 @@ vim.opt.showmatch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.keymap.set("n", "<Leader>h", "<cmd>nohlsearch<cr>")
-vim.keymap.set("n", "<Bslash>", "<C-^>")
-vim.keymap.set("n", "<Leader>1", "<cmd>Neotree toggle<cr>")
+vim.keymap.set("n", "<Leader>h", "<cmd>nohlsearch<cr>", {silent = true})
+vim.keymap.set("n", "<Bslash>", "<C-^>", {silent = true})
+vim.keymap.set("n", "<Leader>1", "<cmd>Neotree toggle<cr>", {silent = true})
 
 local telescope = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", telescope.find_files, {desc = "find files"})
+
+vim.keymap.set( "n", "<Leader>e", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, {silent = true, noremap = true})
 
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
