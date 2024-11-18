@@ -51,3 +51,5 @@ lspconfig.clangd.setup {
         clangdFileStatus = true,
     },
 }
+
+lspconfig.pyright.setup {}
