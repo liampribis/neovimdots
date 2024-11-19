@@ -34,13 +34,14 @@ vim.keymap.set( "n", "<Leader>e", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, {silent = true, noremap = true})
 
+-- theme
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 vim.cmd([[syntax on]])
 
 
+-- lsp
 local cmp_caps = require ("cmp_nvim_lsp").default_capabilities()
-
 local lspconfig = require("lspconfig")
 lspconfig.clangd.setup {
     capabilities = cmp_caps,
@@ -64,5 +65,18 @@ lspconfig.clangd.setup {
         clangdFileStatus = true,
     },
 }
-
 lspconfig.pyright.setup {}
+
+
+-- powershell, :h shell-powershell
+vim.api.nvim_exec(
+[[
+if has("win64") || has("win32")
+		let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+		let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+		let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+		let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+		set shellquote= shellxquote=
+endif
+]]
+, true)
