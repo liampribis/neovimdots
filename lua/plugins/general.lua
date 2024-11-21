@@ -40,10 +40,15 @@ local function copy_path(state)
 end
 
 return {
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
+    {
+        "ellisonleao/gruvbox.nvim",
+        tag = "2.0.0",
+        priority = 1000,
+        config = true,
+    },
     {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
+        tag = "3.27",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
@@ -67,6 +72,7 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        tag = "v0.9.3",
         build = ":TSUpdate",
         opts = {
             ensure_installed = {
@@ -105,7 +111,8 @@ return {
         }
     },
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = {
             defaults = {

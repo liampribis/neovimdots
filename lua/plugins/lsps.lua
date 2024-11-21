@@ -1,7 +1,8 @@
 return {
-    { "neovim/nvim-lspconfig", },
+    { "neovim/nvim-lspconfig", tag = "v1.0.0" },
     {
         "hrsh7th/nvim-cmp",
+        -- tag = "?" -- no release tags
         config = function()
             local cmp = require("cmp")
             cmp.setup({
@@ -33,5 +34,6 @@ return {
     },
     {
         "hrsh7th/cmp-nvim-lsp",
+        -- tag = "?" -- no release tags
     },
 }
