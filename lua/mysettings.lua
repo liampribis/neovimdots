@@ -23,7 +23,38 @@ vim.keymap.set("n", "<Leader>1", "<cmd>Neotree toggle<cr>")
 -- finders
 local telescope = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", telescope.find_files, {desc = "find files"})
+
+vim.keymap.set("n", "<C-P>",
+function()
+    telescope.find_files{
+        prompt_title = "Find Files Without Gitignore",
+        hidden = true,
+        no_ignore = true,
+        file_ignore_patterns = {
+            ".git"
+        },
+    }
+end,
+{desc = "find files"}
+)
+
 vim.keymap.set("n", "<Leader>g", telescope.live_grep)
+
+local telescope_config = require("telescope.config")
+local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
+-- search in hidden/dot files.
+table.insert(vimgrep_arguments, "--hidden")
+table.insert(vimgrep_arguments, "--no-ignore")
+-- don't search in the `.git` directory.
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+
+vim.keymap.set("n", "<Leader>G",
+function()
+    telescope.live_grep{prompt_title = "Live Grep Without Gitignore", vimgrep_arguments = vimgrep_arguments}
+end
+)
+
 vim.keymap.set("n", "<Leader>l", telescope.loclist)
 
 -- location list
@@ -74,11 +105,11 @@ lspconfig.pyright.setup {}
 vim.api.nvim_exec(
 [[
 if has("win64") || has("win32")
-		let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-		let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
-		let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-		let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-		set shellquote= shellxquote=
-endif
-]]
-, true)
+    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+    let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+    let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+    set shellquote= shellxquote=
+    endif
+    ]]
+    , true)
