@@ -67,6 +67,21 @@ return {
                     folder_open = "-",
                     folder_empty = ".",
                 },
+                git_status = {
+                    symbols = {
+                        -- change type
+                        added = "A",
+                        modified = "M",
+                        deleted = "D",
+                        renamed = "R",
+                        -- status type
+                        untracked = "(?)",
+                        ignored = "(i)",
+                        unstaged = "(+)",
+                        staged = "",
+                        conflict = "(!)",
+                    },
+                },
             },
         },
     },
