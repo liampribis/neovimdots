@@ -135,6 +135,12 @@ return {
                 defaults = {
                     sorting_strategy = "ascending",
                     layout_strategy = "center",
+                    layout_config = {
+                        center = {
+                            width = {padding = 0},
+                            -- height = {padding = 0},
+                        }
+                    },
                     mappings = {
                         i = {
                             ["<esc>"] = actions.close,

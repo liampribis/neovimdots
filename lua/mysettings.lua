@@ -26,7 +26,7 @@ vim.keymap.set("n", "<Leader>ch",  "<cmd>ClangdSwitchSourceHeader<cr>")
 local telescope = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", telescope.find_files, {desc = "find files"})
 
-vim.keymap.set("n", "<C-P>",
+vim.keymap.set("n", "<C-k>",
 function()
     telescope.find_files{
         prompt_title = "Find Files Without Gitignore",
@@ -50,6 +50,9 @@ table.insert(vimgrep_arguments, "--no-ignore")
 -- don't search in the `.git` directory.
 table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!**/.git/*")
+-- don't search tags
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/tags")
 
 vim.keymap.set("n", "<Leader>G",
 function()
