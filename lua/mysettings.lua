@@ -19,6 +19,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.keymap.set("n", "<Leader>h", "<cmd>nohlsearch<cr><cmd>lclose<cr><cmd>cclose<cr>")
 vim.keymap.set("n", "<Bslash>", "<C-^>", {silent = true})
 vim.keymap.set("n", "<Leader>1", "<cmd>Neotree toggle<cr>")
+vim.keymap.set("n", "<Leader>t", "<cmd>Neotree reveal<cr>")
 vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename)
 vim.keymap.set("n", "<Leader>ch",  "<cmd>ClangdSwitchSourceHeader<cr>")
 
