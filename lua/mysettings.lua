@@ -16,6 +16,8 @@ vim.opt.relativenumber = true
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.g.load_doxygen_syntax = true
+
 vim.keymap.set("n", "<Leader>h", "<cmd>nohlsearch<cr><cmd>lclose<cr><cmd>cclose<cr>")
 vim.keymap.set("n", "<Bslash>", "<C-^>", {silent = true})
 vim.keymap.set("n", "<Leader>1", "<cmd>Neotree toggle<cr>")
