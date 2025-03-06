@@ -1,0 +1,34 @@
+[user]
+	email = liam.pribis@digiconsoles.com
+	name = Liam Pribis
+
+[alias]
+    k = log --all --decorate --oneline --graph
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+[color "diff"]
+    whitespace = red reverse
+[diff]
+    colorMovedWS = allow-indentation-change
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+[push]
+    default = simple
+    autoSetupRemote = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[commit]
+    verbose = true
+[merge]
+    conflictstyle = zdiff3
+[pull]
+    ff = only
