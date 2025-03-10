@@ -1,7 +1,8 @@
 [user]
 	email = liam.pribis@digiconsoles.com
 	name = Liam Pribis
-
+[core]
+    editor = nvim
 [alias]
     k = log --all --decorate --oneline --graph
 [column]
