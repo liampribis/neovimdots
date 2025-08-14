@@ -29,7 +29,7 @@
     all = true
 [commit]
     verbose = true
-[merge]
-    conflictstyle = zdiff3
+# [merge]
+#     conflictstyle = zdiff3
 [pull]
     ff = only
