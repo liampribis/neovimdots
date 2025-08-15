@@ -72,10 +72,12 @@ syn keyword sharcArithInst recips rsqrts
 " Logical Instructions
 syn keyword sharcLogicInst and or xor not
 syn keyword sharcLogicInst lshift ashift
-syn keyword sharcLogicInst rot bclr bset btst
+syn keyword sharcLogicInst rot bclr bset btgl btst
+syn keyword sharcLogicInst fdep fext 
 syn keyword sharcLogicInst exp leftz lefto
+syn keyword sharcLogicInst fpack funpack bitdep bitext bffwrp
 syn keyword sharcLogicInst pass
-syn keyword sharcLogicInst fext by
+syn keyword sharcLogicInst by
 syn match sharcArithInst "bit\s*\(set\|clr\|tgl\|tst\|xor\)\(\s*flags\)\?"
 syn keyword sharcArithInst bitrev modify
 
