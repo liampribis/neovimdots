@@ -31,6 +31,9 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 
         if is_sharc_file(filepath) then
             vim.bo.filetype = "sharc"
+            vim.bo.tabstop = 8
+            vim.bo.shiftwidth = 8
+            vim.bo.expandtab = false
 
             -- No clangd please
             local clients = vim.lsp.get_clients({ bufnr = 0, name = "clangd" })
