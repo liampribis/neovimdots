@@ -121,3 +121,5 @@ if has("win64") || has("win32")
 endif
 ]]
 , true)
+
+require("sharc")

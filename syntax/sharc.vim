@@ -15,8 +15,8 @@ syn case ignore
 syn match sharcVariable "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
 
 " Variable declarations with .var directive
-syn match sharcVarDecl "\.var\s\+[a-zA-Z_][a-zA-Z0-9_]*\s*\[\s*\d\+\s*\]" contains=sharcDirective,sharcVariable,sharcNumber
-syn match sharcVarDecl "\.var\s\+[a-zA-Z_][a-zA-Z0-9_]*" contains=sharcDirective,sharcVariable
+syn match sharcVarDecl "^\s*\.var\s\+[a-zA-Z_][a-zA-Z0-9_]*\s*\[\s*\d\+\s*\]" contains=sharcDirective,sharcVariable,sharcNumber
+syn match sharcVarDecl "^\s*\.var\s\+[a-zA-Z_][a-zA-Z0-9_]*" contains=sharcDirective,sharcVariable
 
 " Labels (identifiers followed by colon)
 syn match sharcLabel "^\s*[a-zA-Z_][a-zA-Z0-9_]*:"
@@ -76,7 +76,7 @@ syn keyword sharcLogicInst rot bclr bset btst
 syn keyword sharcLogicInst exp leftz lefto
 syn keyword sharcLogicInst pass
 syn keyword sharcLogicInst fext by
-syn match sharcArithInst "bit\s*\(set\|clr\|tgl\|tst\|xor\)"
+syn match sharcArithInst "bit\s*\(set\|clr\|tgl\|tst\|xor\)\(\s*flags\)\?"
 syn keyword sharcArithInst bitrev modify
 
 
@@ -114,14 +114,15 @@ syn keyword sharcFormat x y
 syn keyword sharcFormat re im
 
 " Assembler Directives
-syn keyword sharcDirective .section .global .extern .align
-syn keyword sharcDirective .var .init .seg .endseg
+syn keyword sharcDirective .section .global .extern .align .segment
+syn keyword sharcDirective .init .seg .endseg
 syn keyword sharcDirective .byte .word .long .float
 syn keyword sharcDirective .ascii .asciz
 syn keyword sharcDirective .include .define .undef
 syn keyword sharcDirective .if .ifdef .ifndef .else .endif
 syn keyword sharcDirective .macro .endmacro
 syn keyword sharcDirective .org .equ .set
+syn keyword sharcDirective .var
 
 " Memory Segments
 syn keyword sharcSegment seg_pmco seg_pmda seg_dmda seg_heap seg_stack
