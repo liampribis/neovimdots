@@ -28,7 +28,7 @@ local function copy_path(state)
             if i then
                 local result = results[i]
                 vim.fn.setreg('+', result)
-                vim.notify("Copied: " .. result)
+                -- vim.notify("Copied: " .. result)
             else
                 vim.notify("Invalid selection")
             end
@@ -144,6 +144,10 @@ return {
                     mappings = {
                         i = {
                             ["<esc>"] = actions.close,
+                            ["<C-q>"] = actions.send_to_loclist + actions.open_loclist
+                        },
+                        n = {
+                            ["<C-q>"] = actions.send_to_loclist + actions.open_loclist
                         },
                     },
                 },
