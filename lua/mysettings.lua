@@ -107,6 +107,21 @@ lspconfig.clangd.setup {
     },
 }
 lspconfig.pyright.setup {}
+lspconfig.rust_analyzer.setup {
+    capabilities = cmp_caps,
+    settings = {
+        [ "rust-analyzer" ] = {
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true,
+            },
+        },
+    },
+}
 
 
 -- powershell, :h shell-powershell
