@@ -95,6 +95,7 @@ return {
                 "c",
                 "c_sharp",
                 "cmake",
+                "commonlisp",
                 "cpp",
                 "csv",
                 "dart",
