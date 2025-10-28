@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 vim.opt.ts = 4
 vim.opt.sw = 4
 vim.opt.expandtab = true
