@@ -18,6 +18,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.clipboard = "unnamedplus"
+vim.opt.completeopt = "fuzzy,menu,popup"
 
 vim.g.load_doxygen_syntax = true
 
@@ -80,52 +81,81 @@ end, {silent = true, noremap = true})
 
 -- theme
 vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd.colorscheme('abscs')
 vim.cmd([[syntax on]])
 
 
 -- lsp
-local cmp_caps = require ("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
-lspconfig.clangd.setup {
-    capabilities = cmp_caps,
-    root_dir = function(fname)
-        return require("lspconfig.util").root_pattern(
+vim.lsp.config.pyright = {
+    filetypes = { "python" },
+    cmd = { "pyright-langserver", "--stdio" },
+    root_markers = {
+        "pyproject.toml",
+        "setup.py",
+        "setup.cfg",
+        "requirements.txt",
+        "Pipfile",
+        "pyrightconfig.json",
+    },
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                autoImportCompletions = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
+            },
+            inlayHints = {
+                variableTypes = true,
+                callArgumentNames = true,
+                functionReturnTypes = true,
+                genericTypes = false,
+            },
+        },
+    },
+}
+vim.lsp.enable("pyright")
+
+vim.lsp.config.clangd = {
+    cmd = { "clangd" },
+    filetypes = { "c", "cpp" },
+    -- todo vitis projects?
+    root_markers = {
         "Makefile",
         "configure.ac",
         "configure.in",
         "config.h.in",
         "meson.build",
         "meson_options.txt",
-        "build.ninja"
-        )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-
-        fname
-        ) or require("lspconfig.util").find_git_ancestor(fname)
-    end,
-    init_options = {
-        usePlaceholders = true,
-        completeUnimported = true,
-        clangdFileStatus = true,
+        "build.ninja",
+        "CMakeLists.txt"
+    },
+    settings = {
+        clangd = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+        },
     },
 }
-lspconfig.pyright.setup {}
-lspconfig.rust_analyzer.setup {
-    capabilities = cmp_caps,
+vim.lsp.enable("clangd")
+
+vim.lsp.config.rust_analyzer = {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+    root_markers = {
+        "Cargo.toml",
+    },
     settings = {
-        [ "rust-analyzer" ] = {
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true,
+        autoformat = false,
+        ["rust-analyzer"] = {
+            check = {
+                command = "clippy",
             },
         },
     },
 }
-
+vim.lsp.enable("rust_analyzer")
 
 -- powershell, :h shell-powershell
 vim.api.nvim_exec(

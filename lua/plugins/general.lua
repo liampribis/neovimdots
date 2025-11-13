@@ -46,6 +46,7 @@ return {
         priority = 1000,
         config = true,
     },
+    { 'Abstract-IDE/Abstract-cs' },
     {
         "nvim-neo-tree/neo-tree.nvim",
         tag = "3.27",
