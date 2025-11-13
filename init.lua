@@ -81,7 +81,7 @@ end, {silent = true, noremap = true})
 
 -- theme
 vim.o.background = "dark"
-vim.cmd.colorscheme('abscs')
+vim.cmd.colorscheme('mellow')
 vim.cmd([[syntax on]])
 
 

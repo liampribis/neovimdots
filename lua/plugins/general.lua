@@ -40,13 +40,7 @@ local function copy_path(state)
 end
 
 return {
-    {
-        "ellisonleao/gruvbox.nvim",
-        tag = "2.0.0",
-        priority = 1000,
-        config = true,
-    },
-    { 'Abstract-IDE/Abstract-cs' },
+    { "mellow-theme/mellow.nvim" },
     {
         "nvim-neo-tree/neo-tree.nvim",
         tag = "3.27",
