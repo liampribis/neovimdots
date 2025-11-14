@@ -13,9 +13,6 @@ local colors = {
     red1 = "#e97751",
     red0 = "#b14848",
     orange = "#cf9a45",
-    --blue0 = "#3351a9",
-    --blue1 = "#5a93b1",
-    --blue2 = "#93a8cf",
     blue0 = "#4b6ac7",
     blue1 = "#7cb0cb",
     blue2 = "#64c9ff",
@@ -23,11 +20,9 @@ local colors = {
 }
 
 colors.bg1 = brighten(colors.bg, 4)
+colors.bg2 = brighten(colors.bg, 3)
 colors.fg0 = brighten(colors.fg1, 0.8)
 
-print(colors.bg1)
-
--- test
 local groups = {
     Normal = { fg = colors.fg1, bg = colors.bg },
     Visual = { bg = colors.bg1 },
@@ -41,6 +36,7 @@ local groups = {
     Special = { fg = colors.red0 },
     PreProc = { link = "Statement" },
     ["@variable"] = { fg = colors.blue2 },
+    StatusLine = { bg = colors.bg2 },
 }
 
 if vim.g.colors_name then
