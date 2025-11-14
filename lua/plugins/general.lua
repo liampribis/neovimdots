@@ -40,7 +40,6 @@ local function copy_path(state)
 end
 
 return {
-    { "mellow-theme/mellow.nvim" },
     {
         "nvim-neo-tree/neo-tree.nvim",
         tag = "3.27",

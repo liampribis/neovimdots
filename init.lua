@@ -81,7 +81,6 @@ end, {silent = true, noremap = true})
 
 -- theme
 vim.o.background = "dark"
-vim.cmd.colorscheme('mellow')
 vim.cmd([[syntax on]])
 
 
@@ -169,5 +168,7 @@ if has("win64") || has("win32")
 endif
 ]]
 , true)
+
+require("theme")
 
 require("sharc")
