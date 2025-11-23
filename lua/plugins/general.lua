@@ -40,7 +40,9 @@ local function copy_path(state)
 end
 
 return {
+    { "unblevable/quick-scope" },
     {
+
         "nvim-neo-tree/neo-tree.nvim",
         tag = "3.27",
         dependencies = {
