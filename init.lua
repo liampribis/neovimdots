@@ -20,6 +20,10 @@ vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.completeopt = "fuzzy,menu,popup"
 
+-- redirect c-n completion to always be omnicomplete
+vim.keymap.set('i', '<C-n>', '<C-x><C-o>', { noremap = true })
+vim.keymap.set('i', '<C-p>', '<C-x><C-o>', { noremap = true })
+
 vim.g.load_doxygen_syntax = true
 
 vim.keymap.set("n", "<Leader>h", "<cmd>nohlsearch<cr><cmd>lclose<cr><cmd>cclose<cr>")
