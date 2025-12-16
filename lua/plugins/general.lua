@@ -131,11 +131,11 @@ return {
             require("telescope").setup {
                 defaults = {
                     sorting_strategy = "ascending",
-                    layout_strategy = "center",
+                    layout_strategy = "horizontal",
                     layout_config = {
-                        center = {
-                            width = {padding = 0},
-                            -- height = {padding = 0},
+                        horizontal = {
+                            width = { padding = 0 },
+                            height = { padding = 0 },
                         }
                     },
                     mappings = {
