@@ -130,6 +130,8 @@ return {
             local actions = require("telescope.actions")
             require("telescope").setup {
                 defaults = {
+                    border = true,
+                    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
                     sorting_strategy = "ascending",
                     layout_strategy = "horizontal",
                     layout_config = {
@@ -149,6 +151,11 @@ return {
                     },
                 },
             }
+
+            -- highlight titles since there's no window border
+            vim.api.nvim_set_hl(0, 'TelescopePromptTitle', { link = 'Special' })
+            vim.api.nvim_set_hl(0, 'TelescopeResultsTitle', { link = 'Special' })
+            vim.api.nvim_set_hl(0, 'TelescopePreviewTitle', { link = 'Special' })
         end,
     }
 }
