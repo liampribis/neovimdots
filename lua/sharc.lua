@@ -16,7 +16,8 @@ SHARC_DIRS = {
 
 local function is_sharc_file(filepath)
     for _, dir in ipairs(SHARC_DIRS) do
-        if filepath:match(dir) and filepath:match("%.[hH]$") then
+        local lower_path = filepath:lower()
+        if filepath:match(dir) and (lower_path:match("%.h$") or lower_path:match("%.asm$")) then
             return true
         end
     end
