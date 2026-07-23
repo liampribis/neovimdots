@@ -116,6 +116,36 @@ vim.keymap.set("n", "<Leader>s", "\"jyiw:grep! <C-r><C-w><cr><cmd>cope<cr>",
 vim.keymap.set( "n", "<Leader>e", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end,
     { silent = true, noremap = true, desc = "toggle diagnostics" })
 
+local function select_compile_commands()
+    local dbname = "compile_commands.json"
+    local pattern = "bld/release*/*/Q*/" .. dbname
+    local files = vim.fn.glob(pattern, false, true)
+
+    if vim.tbl_isempty(files) then
+        vim.notify("No " .. dbname .. " files found.", vim.log.levels.WARN)
+        return
+    end
+
+    local relevent_subpaths = vim.tbl_map(function(file)
+        local prestrip = file:gsub("^bld/", "")
+        local poststrip = prestrip:gsub("/" .. vim.pesc(dbname) .. "$", "")
+        return poststrip
+    end, files)
+
+    vim.ui.select(relevent_subpaths, {
+        prompt = "Select compilation database:",
+    }, function(choice)
+        if not choice then return end
+
+        out = "NVIM SELECTING " .. choice
+        local cmd = "TaitTerm_Build/select_compilation_database " .. choice
+        out = out .. vim.fn.system(cmd)
+        print(out)
+    end)
+end
+
+vim.keymap.set("n", "<leader>cc", select_compile_commands, { desc = "Select compile commands" })
+
 vim.pack.add( {
     { src = "https://github.com/unblevable/quick-scope", version = "v2.7.1", },
     { src = "https://github.com/nvim-mini/mini.pick", version = "fe079c2bd894a5ee70b62f23d819620ef40c4949", },
